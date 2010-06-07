@@ -1,0 +1,4 @@
+bin/
+gen/
+.pmd/
+res/values/medalets_info.xml
