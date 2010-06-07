@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/contact_list_context_menu_chat_item"
+		android:title="@string/CDChat">
+		<menu>
+		</menu>
+	</item>
+	<item android:id="@+id/contact_list_context_menu_call_item"
+		android:title="@string/CDCall" android:visible="false" />
+	<item android:id="@+id/contact_list_context_menu_user_info"
+		android:title="@string/CDInfos">
+		<menu>
+			<item android:id="@+id/contact_list_context_menu_userinfo_alias"
+				android:title="@string/userinfo_label_alias" />
+		</menu>
+	</item>
+</menu>
