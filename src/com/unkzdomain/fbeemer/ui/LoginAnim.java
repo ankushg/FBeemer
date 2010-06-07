@@ -53,7 +53,7 @@ import com.unkzdomain.fbeemer.utils.AbstractManagedActivity;
 /**
  * The Class LoginAnim.
  */
-class LoginAnim extends AbstractManagedActivity {
+public class LoginAnim extends AbstractManagedActivity {
 
 	/**
 	 * The listener interface for receiving click events. The class that is

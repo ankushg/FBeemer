@@ -3,10 +3,9 @@
 	package="com.unkzdomain.fbeemer" android:versionCode="7"
 	android:versionName="@string/medialets_app_version">
 	<application android:label="@string/app_name" android:icon="@drawable/launcher_icon"
-		android:debuggable="true" android:name=".FBeemerApplication"
-		android:hasCode="true" android:allowClearUserData="true"
+		android:debuggable="true" android:hasCode="true" android:allowClearUserData="true"
 		android:enabled="true" android:allowBackup="true"
-		android:theme="@style/Theme.FBeemer.NoBack">
+		android:theme="@style/Theme.FBeemer.NoBack" android:name=".MainApplication">
 		<activity android:name=".ui.Login" android:label="@string/app_name"
 			android:launchMode="standard">
 			<intent-filter>
