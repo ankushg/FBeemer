@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import org.jivesoftware.smack.packet.Presence;
@@ -59,16 +59,16 @@ public class PresenceAdapter implements Parcelable {
 
 	/** The m type. */
 	private int												mType;
-	
+
 	/** The m status. */
 	private int												mStatus;
-	
+
 	/** The m to. */
 	private String											mTo;
-	
+
 	/** The m from. */
 	private String											mFrom;
-	
+
 	/** The m status text. */
 	private String											mStatusText;
 

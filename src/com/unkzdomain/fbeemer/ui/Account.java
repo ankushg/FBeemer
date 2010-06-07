@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.ui;
 
 import android.content.Intent;
@@ -50,15 +50,15 @@ import com.unkzdomain.fbeemer.utils.AbstractManagedActivity;
 /**
  * The Class Account.
  */
-public class Account extends AbstractManagedActivity implements
-		OnClickListener { // NO_UCD
+public class Account extends AbstractManagedActivity implements OnClickListener { // NO_UCD
 
 	/**
 	 * The Class JidTextWatcher.
 	 */
- private class JidTextWatcher implements TextWatcher {
+	private class JidTextWatcher implements TextWatcher {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.text.TextWatcher#afterTextChanged(android.text.Editable)
 		 */
 		public void afterTextChanged(final Editable s) {
@@ -66,16 +66,21 @@ public class Account extends AbstractManagedActivity implements
 			nextButton.setEnabled(mValidJid && mValidPassword);
 		}
 
-		/* (non-Javadoc)
-		 * @see android.text.TextWatcher#beforeTextChanged(java.lang.CharSequence, int, int, int)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.text.TextWatcher#beforeTextChanged(java.lang.CharSequence,
+		 * int, int, int)
 		 */
 		public void beforeTextChanged(final CharSequence s, final int start,
 				final int count, final int after) {
 			// Do nothing
 		}
 
-		/* (non-Javadoc)
-		 * @see android.text.TextWatcher#onTextChanged(java.lang.CharSequence, int, int, int)
+		/*
+		 * (non-Javadoc)
+		 * @see android.text.TextWatcher#onTextChanged(java.lang.CharSequence,
+		 * int, int, int)
 		 */
 		public void onTextChanged(final CharSequence s, final int start,
 				final int before, final int count) {
@@ -88,7 +93,8 @@ public class Account extends AbstractManagedActivity implements
 	 */
 	private class PasswordTextWatcher implements TextWatcher {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.text.TextWatcher#afterTextChanged(android.text.Editable)
 		 */
 		public void afterTextChanged(final Editable s) {
@@ -96,8 +102,11 @@ public class Account extends AbstractManagedActivity implements
 			nextButton.setEnabled(mValidPassword);
 		}
 
-		/* (non-Javadoc)
-		 * @see android.text.TextWatcher#beforeTextChanged(java.lang.CharSequence, int, int, int)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.text.TextWatcher#beforeTextChanged(java.lang.CharSequence,
+		 * int, int, int)
 		 */
 		public void beforeTextChanged(final CharSequence s, final int start,
 				final int count, final int after) {
@@ -105,8 +114,10 @@ public class Account extends AbstractManagedActivity implements
 
 		}
 
-		/* (non-Javadoc)
-		 * @see android.text.TextWatcher#onTextChanged(java.lang.CharSequence, int, int, int)
+		/*
+		 * (non-Javadoc)
+		 * @see android.text.TextWatcher#onTextChanged(java.lang.CharSequence,
+		 * int, int, int)
 		 */
 		public void onTextChanged(final CharSequence s, final int start,
 				final int before, final int count) {
@@ -117,19 +128,19 @@ public class Account extends AbstractManagedActivity implements
 
 	/** The Constant MANUAL_CONFIG. */
 	private static transient final int			MANUAL_CONFIG	= 1;
-	
+
 	/** The next button. */
 	private transient Button					nextButton;
-	
+
 	/** The account jid. */
 	private transient EditText					accountJID;
-	
+
 	/** The account password. */
 	private transient EditText					accountPassword;
-	
+
 	/** The jid text watcher. */
 	private transient final JidTextWatcher		jidTextWatcher	= new JidTextWatcher();
-	
+
 	/** The pass text watcher. */
 	private transient final PasswordTextWatcher	passTextWatcher	= new PasswordTextWatcher();
 
@@ -182,8 +193,10 @@ public class Account extends AbstractManagedActivity implements
 		edit.commit();
 	}
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onActivityResult(int, int,
+	 * android.content.Intent)
 	 */
 	@Override
 	protected void onActivityResult(final int requestCode,
@@ -203,7 +216,8 @@ public class Account extends AbstractManagedActivity implements
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
 	public void onClick(final View v) {
@@ -216,8 +230,11 @@ public class Account extends AbstractManagedActivity implements
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle
+	 * )
 	 */
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {

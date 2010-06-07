@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer;
 
 import android.app.Application;
@@ -51,8 +51,12 @@ public class MainApplication extends Application {
 	private class PreferenceListener implements
 			SharedPreferences.OnSharedPreferenceChangeListener {
 
-		/* (non-Javadoc)
-		 * @see android.content.SharedPreferences.OnSharedPreferenceChangeListener#onSharedPreferenceChanged(android.content.SharedPreferences, java.lang.String)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.SharedPreferences.OnSharedPreferenceChangeListener
+		 * #onSharedPreferenceChanged(android.content.SharedPreferences,
+		 * java.lang.String)
 		 */
 		public void onSharedPreferenceChanged(
 				final SharedPreferences sharedPreferences, final String key) {
@@ -69,25 +73,25 @@ public class MainApplication extends Application {
 
 	/** The Constant ACCOUNT_USERNAME_KEY. */
 	public static final String					ACCOUNT_USERNAME_KEY		= "account_username";
-	
+
 	/** The Constant ACCOUNT_PASSWORD_KEY. */
 	public static final String					ACCOUNT_PASSWORD_KEY		= "account_password";
-	
+
 	/** The Constant STATUS_KEY. */
 	protected static final String				STATUS_KEY					= "status";
 
 	/** The Constant NOTIFICATION_VIBRATE_KEY. */
 	protected static final String				NOTIFICATION_VIBRATE_KEY	= "notification_vibrate";
-	
+
 	/** The Constant NOTIFICATION_SOUND_KEY. */
 	protected static final String				NOTIFICATION_SOUND_KEY		= "notification_sound";
 
 	/** The is connected. */
 	private transient boolean					isConnected;
-	
+
 	/** The is account configured. */
 	private transient boolean					isAccountConfigured;
-	
+
 	/** The settings. */
 	private transient SharedPreferences			settings;
 
@@ -118,7 +122,8 @@ public class MainApplication extends Application {
 		return isConnected;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Application#onCreate()
 	 */
 	@Override
@@ -133,7 +138,8 @@ public class MainApplication extends Application {
 		settings.registerOnSharedPreferenceChangeListener(preferenceListener);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Application#onTerminate()
 	 */
 	@Override

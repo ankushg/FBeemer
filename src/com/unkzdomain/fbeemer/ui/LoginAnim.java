@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.ui;
 
 import android.app.Activity;
@@ -53,7 +53,7 @@ import com.unkzdomain.fbeemer.utils.AbstractManagedActivity;
 /**
  * The Class LoginAnim.
  */
-public class LoginAnim extends AbstractManagedActivity {
+public class LoginAnim extends AbstractManagedActivity { // NO_UCD
 
 	/**
 	 * The listener interface for receiving click events. The class that is
@@ -73,7 +73,8 @@ public class LoginAnim extends AbstractManagedActivity {
 		ClickListener() {
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.view.View.OnClickListener#onClick(android.view.View)
 		 */
 		public void onClick(final View v) {
@@ -95,8 +96,11 @@ public class LoginAnim extends AbstractManagedActivity {
 		public LoginServiceConnection() {
 		}
 
-		/* (non-Javadoc)
-		 * @see android.content.ServiceConnection#onServiceConnected(android.content.ComponentName, android.os.IBinder)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.ServiceConnection#onServiceConnected(android.content
+		 * .ComponentName, android.os.IBinder)
 		 */
 		public void onServiceConnected(final ComponentName name,
 				final IBinder service) {
@@ -106,8 +110,11 @@ public class LoginAnim extends AbstractManagedActivity {
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see android.content.ServiceConnection#onServiceDisconnected(android.content.ComponentName)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.ServiceConnection#onServiceDisconnected(android.content
+		 * .ComponentName)
 		 */
 		public void onServiceDisconnected(final ComponentName name) {
 			mXmppFacade = null;
@@ -161,7 +168,8 @@ public class LoginAnim extends AbstractManagedActivity {
 			}
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
 		 */
 		@Override
@@ -178,16 +186,16 @@ public class LoginAnim extends AbstractManagedActivity {
 		SERVICE_INTENT.setComponent(new ComponentName("com.unkzdomain.fbeemer",
 				"com.unkzdomain.fbeemer.AppService"));
 	}
-	
+
 	/** The m logo. */
 	private ImageView									mLogo;
-	
+
 	/** The m rotate anim. */
 	private Animation									mRotateAnim;
-	
+
 	/** The m serv conn. */
 	private final ServiceConnection						mServConn		= new LoginServiceConnection();
-	
+
 	/** The m xmpp facade. */
 	private IXmppFacade									mXmppFacade;
 

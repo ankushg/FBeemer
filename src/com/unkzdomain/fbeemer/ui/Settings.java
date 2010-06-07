@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.ui;
 
 import android.content.ComponentName;
@@ -39,7 +39,7 @@ import com.unkzdomain.fbeemer.R;
 /**
  * The Class Settings.
  */
-public class Settings extends PreferenceActivity {
+public class Settings extends PreferenceActivity { // NO_UCD
 
 	/** The Constant SERVICE_INTENT. */
 	private static final Intent	SERVICE_INTENT	= new Intent();
@@ -55,7 +55,8 @@ public class Settings extends PreferenceActivity {
 	public Settings() {
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.preference.PreferenceActivity#onCreate(android.os.Bundle)
 	 */
 	@Override

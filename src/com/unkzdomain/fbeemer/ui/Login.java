@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.ui;
 
 import android.app.Activity;
@@ -51,17 +51,17 @@ import com.unkzdomain.fbeemer.utils.AppConnectivity;
 /**
  * The Class Login.
  */
-public class Login extends AbstractManagedActivity {
+public class Login extends AbstractManagedActivity { // NO_UCD
 
 	/** The Constant LOGIN_REQUEST_CODE. */
 	private static final int	LOGIN_REQUEST_CODE	= 1;
-	
+
 	/** The m text view. */
 	private TextView			mTextView;
-	
+
 	/** The m is result. */
 	private boolean				mIsResult;
-	
+
 	/** The m main application. */
 	private MainApplication		mMainApplication;
 
@@ -100,8 +100,10 @@ public class Login extends AbstractManagedActivity {
 		aboutDialog.show();
 	}
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onActivityResult(int, int, android.content.Intent)
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onActivityResult(int, int,
+	 * android.content.Intent)
 	 */
 	@Override
 	protected void onActivityResult(final int requestCode,
@@ -121,8 +123,11 @@ public class Login extends AbstractManagedActivity {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle
+	 * )
 	 */
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
@@ -142,7 +147,8 @@ public class Login extends AbstractManagedActivity {
 		mTextView = (TextView) findViewById(R.id.log_as_msg);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 	@Override
@@ -153,7 +159,8 @@ public class Login extends AbstractManagedActivity {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
 	@Override
@@ -183,7 +190,8 @@ public class Login extends AbstractManagedActivity {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#onStart()
 	 */
 	@Override

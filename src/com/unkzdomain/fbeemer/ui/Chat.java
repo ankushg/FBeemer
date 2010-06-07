@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.ui;
 
 import java.util.ArrayList;
@@ -98,8 +98,11 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 	 */
 	private class ChatManagerListener extends IChatManagerListener.Stub {
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IChatManagerListener#chatCreated(com.unkzdomain.fbeemer.service.aidl.IChat, boolean)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IChatManagerListener#chatCreated
+		 * (com.unkzdomain.fbeemer.service.aidl.IChat, boolean)
 		 */
 		public void chatCreated(final IChat chat, final boolean locally) {
 			if (locally) {
@@ -138,32 +141,44 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 	 */
 	private class FBeemerRosterListener extends IBeemRosterListener.Stub {
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesAdded(java.util.List)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesAdded
+		 * (java.util.List)
 		 */
 		public void onEntriesAdded(final List<String> addresses)
 				throws RemoteException {
 			// Do nothing
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesDeleted(java.util.List)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesDeleted
+		 * (java.util.List)
 		 */
 		public void onEntriesDeleted(final List<String> addresses)
 				throws RemoteException {
 			// Do nothing
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesUpdated(java.util.List)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesUpdated
+		 * (java.util.List)
 		 */
 		public void onEntriesUpdated(final List<String> addresses)
 				throws RemoteException {
 			// Do nothing
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onPresenceChanged(com.unkzdomain.fbeemer.service.PresenceAdapter)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onPresenceChanged
+		 * (com.unkzdomain.fbeemer.service.PresenceAdapter)
 		 */
 		public void onPresenceChanged(final PresenceAdapter presence)
 				throws RemoteException {
@@ -187,8 +202,11 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 	 */
 	private final class FBeemerServiceConnection implements ServiceConnection {
 
-		/* (non-Javadoc)
-		 * @see android.content.ServiceConnection#onServiceConnected(android.content.ComponentName, android.os.IBinder)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.ServiceConnection#onServiceConnected(android.content
+		 * .ComponentName, android.os.IBinder)
 		 */
 		public void onServiceConnected(final ComponentName name,
 				final IBinder service) {
@@ -208,8 +226,11 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see android.content.ServiceConnection#onServiceDisconnected(android.content.ComponentName)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.ServiceConnection#onServiceDisconnected(android.content
+		 * .ComponentName)
 		 */
 
 		public void onServiceDisconnected(final ComponentName name) {
@@ -228,7 +249,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 	 */
 	private class MessagesListAdapter extends BaseAdapter {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.widget.Adapter#getCount()
 		 */
 
@@ -236,7 +258,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 			return mListMessages.size();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.widget.Adapter#getItem(int)
 		 */
 
@@ -244,7 +267,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 			return mListMessages.get(position);
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.widget.Adapter#getItemId(int)
 		 */
 
@@ -252,8 +276,10 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 			return position;
 		}
 
-		/* (non-Javadoc)
-		 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+		/*
+		 * (non-Javadoc)
+		 * @see android.widget.Adapter#getView(int, android.view.View,
+		 * android.view.ViewGroup)
 		 */
 		public View getView(final int position, final View convertView,
 				final ViewGroup parent) {
@@ -286,16 +312,16 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 	 * The Class MessageText.
 	 */
 	private class MessageText {
-		
+
 		/** The m bare jid. */
 		private transient String		mBareJid;
-		
+
 		/** The m name. */
 		private transient String		mName;
-		
+
 		/** The m message. */
 		private transient String		mMessage;
-		
+
 		/** The m is error. */
 		private transient final boolean	mIsError;
 
@@ -424,8 +450,12 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		public OnMessageListener() {
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IMessageListener#processMessage(com.unkzdomain.fbeemer.service.aidl.IChat, com.unkzdomain.fbeemer.service.Message)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IMessageListener#processMessage
+		 * (com.unkzdomain.fbeemer.service.aidl.IChat,
+		 * com.unkzdomain.fbeemer.service.Message)
 		 */
 
 		public void processMessage(final IChat chat, final Message msg)
@@ -466,8 +496,11 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IMessageListener#stateChanged(com.unkzdomain.fbeemer.service.aidl.IChat)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IMessageListener#stateChanged
+		 * (com.unkzdomain.fbeemer.service.aidl.IChat)
 		 */
 
 		public void stateChanged(final IChat chat) throws RemoteException {
@@ -502,16 +535,16 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		SERVICE_INTENT.setComponent(new ComponentName("com.unkzdomain.fbeemer",
 				"com.unkzdomain.fbeemer.AppService"));
 	}
-	
+
 	/** The handler. */
 	private transient final Handler					handler					= new Handler();
-	
+
 	/** The roster. */
 	private transient IRoster						roster;
-	
+
 	/** The contact. */
 	private transient Contact						contact;
-	
+
 	/** The contact name view. */
 	private transient TextView						contactNameView;
 
@@ -520,31 +553,31 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 
 	/** The contact status icon. */
 	private transient ImageView						contactStatusIcon;
-	
+
 	/** The messages list view. */
 	private transient ListView						messagesListView;
-	
+
 	/** The input field. */
 	private transient EditText						inputField;
-	
+
 	/** The send button. */
 	private transient Button						sendButton;
-	
+
 	/** The status icons map. */
 	private final Map<Integer, Bitmap>				statusIconsMap			= new HashMap<Integer, Bitmap>();
 
 	/** The m list messages. */
 	private final List<MessageText>					mListMessages			= new ArrayList<MessageText>();
-	
+
 	/** The m chat. */
 	private IChat									mChat;
-	
+
 	/** The m chat manager. */
 	private IChatManager							mChatManager;
-	
+
 	/** The m message listener. */
 	private final IMessageListener					mMessageListener		= new OnMessageListener();
-	
+
 	/** The m chat manager listener. */
 	private transient final IChatManagerListener	mChatManagerListener	= new ChatManagerListener();
 
@@ -691,8 +724,11 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		noActiveChatsDialog.show();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle
+	 * )
 	 */
 
 	@Override
@@ -721,7 +757,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		prepareIconsStatus();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 
@@ -733,7 +770,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#onDestroy()
 	 */
 
@@ -743,8 +781,10 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		unregisterReceiver(mBroadcastReceiver);
 	}
 
-	/* (non-Javadoc)
-	 * @see android.view.View.OnKeyListener#onKey(android.view.View, int, android.view.KeyEvent)
+	/*
+	 * (non-Javadoc)
+	 * @see android.view.View.OnKeyListener#onKey(android.view.View, int,
+	 * android.view.KeyEvent)
 	 */
 
 	public boolean onKey(final View v, final int keyCode, final KeyEvent event) {
@@ -759,7 +799,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onNewIntent(android.content.Intent)
 	 */
 
@@ -769,7 +810,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		setIntent(intent);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
 
@@ -811,7 +853,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#onPause()
 	 */
 
@@ -842,7 +885,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		mChatManager = null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onRestoreInstanceState(android.os.Bundle)
 	 */
 
@@ -851,7 +895,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#onResume()
 	 */
 	@Override
@@ -864,7 +909,8 @@ public class Chat extends AbstractManagedActivity implements OnKeyListener {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onSaveInstanceState(android.os.Bundle)
 	 */
 

@@ -25,8 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
+ */
 package com.unkzdomain.fbeemer;
 
 import org.jivesoftware.smack.ConnectionConfiguration;
@@ -66,127 +65,56 @@ import com.unkzdomain.fbeemer.utils.Status;
  */
 public class AppService extends Service {
 
-	/**
-	 * The Class FBeemerServiceBroadcastReceiver.
-	 */
-	private class FBeemerServiceBroadcastReceiver extends BroadcastReceiver {
-
-		/** The old status. */
-		private String	oldStatus;
-		
-		/** The old mode. */
-		private int		oldMode;
-
-		/**
-		 * Instantiates a new f beemer service broadcast receiver.
-		 */
-		public FBeemerServiceBroadcastReceiver() {
-		}
-
-		/* (non-Javadoc)
-		 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
-		 */
-		@Override
-		public void onReceive(final Context context, final Intent intent) {
-			final String intentAction = intent.getAction();
-			if (intentAction.equals(Intent.ACTION_SCREEN_OFF)) {
-				oldMode = connection.getPreviousMode();
-				oldStatus = connection.getPreviousStatus();
-				if (connection.isAuthentificated()) {
-					connection.changeStatus(Status.AWAY, settings.getString(
-							"settings_away_message", "Away"));
-				}
-			} else if (intentAction.equals(Intent.ACTION_SCREEN_ON)) {
-				if (connection.isAuthentificated()) {
-					connection.changeStatus(oldMode, oldStatus);
-				}
-			}
-		}
-	}
-
-	/**
-	 * The listener interface for receiving FBeemerServicePreference events. The
-	 * class that is interested in processing a FBeemerServicePreference event
-	 * implements this interface, and the object created with that class is
-	 * registered with a component using the component's
-	 * <code>addFBeemerServicePreferenceListener<code> method. When
-	 * the FBeemerServicePreference event occurs, that object's appropriate
-	 * method is invoked.
-	 * 
-	 * @see FBeemerServicePreferenceEvent
-	 */
-	private class FBeemerServicePreferenceListener implements
-			SharedPreferences.OnSharedPreferenceChangeListener {
-
-		/**
-		 * Instantiates a new f beemer service preference listener.
-		 */
-		public FBeemerServicePreferenceListener() {
-		}
-
-		/* (non-Javadoc)
-		 * @see android.content.SharedPreferences.OnSharedPreferenceChangeListener#onSharedPreferenceChanged(android.content.SharedPreferences, java.lang.String)
-		 */
-		public void onSharedPreferenceChanged(
-				final SharedPreferences sharedPreferences, final String key) {
-			if ("settings_away_chk".equals(key)) {
-				if (sharedPreferences.getBoolean("settings_away_chk", false)) {
-					onOffReceiverIsRegistered = true;
-					registerReceiver(onOffReceiver, new IntentFilter(
-							Intent.ACTION_SCREEN_OFF));
-					registerReceiver(onOffReceiver, new IntentFilter(
-							Intent.ACTION_SCREEN_ON));
-				} else {
-					onOffReceiverIsRegistered = false;
-					unregisterReceiver(onOffReceiver);
-				}
-			}
-		}
-	}
-
 	/** The Constant NOTIFICATION_STATUS_ID. */
-	public static final int							NOTIFICATION_STATUS_ID	= 100;
+	public static final int						NOTIFICATION_STATUS_ID	= 100;
 
 	/** The Constant DEFAULT_XMPP_PORT. */
-	private static final int						DEFAULT_XMPP_PORT		= 5222;
-	
-	/** The notification manager. */
-	private NotificationManager						notificationManager;
-	
-	/** The connection. */
-	private XmppConnectionAdapter					connection;
-	
-	/** The settings. */
-	private SharedPreferences						settings;
+	private static final int					DEFAULT_XMPP_PORT		= 5222;
 
-	/** The login. */
-	private String									login;
-	
-	/** The password. */
-	private String									password;
-	
-	/** The connection config. */
-	private final ConnectionConfiguration			connectionConfig		= new ConnectionConfiguration(
-																					"chat.facebook.com",
-																					DEFAULT_XMPP_PORT,
-																					"chat.facebook.com",
-																					ProxyInfo
-																							.forNoProxy());
+	/** The m notification manager. */
+	private NotificationManager					mNotificationManager;
 
-	/** The bind. */
-	private IXmppFacade.Stub						bind;
-	
-	/** The receiver. */
-	private final AppBroadcastReceiver				receiver				= new AppBroadcastReceiver();
+	/** The m connection. */
+	private XmppConnectionAdapter				mConnection;
 
-	/** The on off receiver. */
-	private final FBeemerServiceBroadcastReceiver	onOffReceiver			= new FBeemerServiceBroadcastReceiver();
+	/** The m settings. */
+	private SharedPreferences					mSettings;
 
-	/** The pref listener. */
-	private final FBeemerServicePreferenceListener	prefListener			= new FBeemerServicePreferenceListener();
+	/** The m login. */
+	private String								mLogin;
 
-	/** The on off receiver is registered. */
-	private boolean									onOffReceiverIsRegistered;
+	/** The m password. */
+	private String								mPassword;
+
+	/** The m host. */
+	private String								mHost;
+
+	/** The m service. */
+	private String								mService;
+
+	/** The m port. */
+	private int									mPort;
+
+	/** The m connection configuration. */
+	private ConnectionConfiguration				mConnectionConfiguration;
+
+	/** The m proxy info. */
+	private ProxyInfo							mProxyInfo;
+
+	/** The m bind. */
+	private IXmppFacade.Stub					mBind;
+
+	/** The m receiver. */
+	private final AppBroadcastReceiver			mReceiver				= new AppBroadcastReceiver();
+
+	/** The m on off receiver. */
+	private final AppServiceBroadcastReceiver	mOnOffReceiver			= new AppServiceBroadcastReceiver();
+
+	/** The m preference listener. */
+	private final AppServicePreferenceListener	mPreferenceListener		= new AppServicePreferenceListener();
+
+	/** The m on off receiver is registered. */
+	private boolean								mOnOffReceiverIsRegistered;
 
 	/**
 	 * Instantiates a new app service.
@@ -195,164 +123,122 @@ public class AppService extends Service {
 	}
 
 	/**
-	 * Configure.
-	 * 
-	 * @param pm
-	 *            the pm
-	 */
-	private void configure(final ProviderManager pm) {
-		pm.addIQProvider("query", "jabber:iq:privacy", new PrivacyProvider());
-	}
-
-	/**
-	 * Delete notification.
-	 * 
-	 * @param id
-	 *            the id
-	 */
-	public void deleteNotification(final int id) {
-		notificationManager.cancel(id);
-	}
-
-	/**
-	 * Gets the bind.
-	 * 
-	 * @return the bind
-	 */
-	public IXmppFacade getBind() {
-		return bind;
-	}
-
-	/**
-	 * Gets the notification manager.
-	 * 
-	 * @return the notification manager
-	 */
-	public NotificationManager getNotificationManager() {
-		return notificationManager;
-	}
-
-	/**
-	 * Gets the service preference.
-	 * 
-	 * @return the service preference
-	 */
-	public SharedPreferences getServicePreference() {
-		return settings;
-	}
-
-	/**
 	 * Inits the connection config.
 	 */
 	private void initConnectionConfig() {
-		if (settings.getBoolean("settings_key_xmpp_tls_use", false)) {
-			connectionConfig.setSecurityMode(SecurityMode.required);
+		mProxyInfo = ProxyInfo.forNoProxy();
+		mConnectionConfiguration = new ConnectionConfiguration(mHost, mPort,
+				mService, mProxyInfo);
+
+		if (mSettings.getBoolean("settings_key_xmpp_tls_use", false)
+				|| mSettings.getBoolean("settings_key_gmail", false)) {
+			mConnectionConfiguration.setSecurityMode(SecurityMode.required);
 		}
-		connectionConfig.setDebuggerEnabled(false);
-		connectionConfig.setSendPresence(true);
-		connectionConfig.setTruststoreType("BKS");
-		connectionConfig.setTruststorePath("/system/etc/security/cacerts.bks");
+		mConnectionConfiguration.setDebuggerEnabled(false);
+		mConnectionConfiguration.setSendPresence(true);
+		// maybe not the universal path, but it works on most devices (Samsung
+		// Galaxy, Google Nexus One)
+		mConnectionConfiguration.setTruststoreType("BKS");
+		mConnectionConfiguration
+				.setTruststorePath("/system/etc/security/cacerts.bks");
 	}
 
-	/**
-	 * Inits the jingle.
-	 * 
-	 * @param adaptee
-	 *            the adaptee
-	 */
-	public void initJingle(final XMPPConnection adaptee) {
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Service#onBind(android.content.Intent)
 	 */
 	@Override
-	public IBinder onBind(final Intent intent) {
-		return bind;
+	public IBinder onBind(Intent intent) {
+		return mBind;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Service#onUnbind(android.content.Intent)
+	 */
+	@Override
+	public boolean onUnbind(Intent intent) {
+		if (!mConnection.getAdaptee().isConnected()) {
+			this.stopSelf();
+		}
+		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Service#onCreate()
 	 */
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		registerReceiver(receiver, new IntentFilter(
+		registerReceiver(mReceiver, new IntentFilter(
 				ConnectivityManager.CONNECTIVITY_ACTION));
-		settings = PreferenceManager.getDefaultSharedPreferences(this);
-		settings.registerOnSharedPreferenceChangeListener(prefListener);
-		if (settings.getBoolean("settings_away_chk", false)) {
-			onOffReceiverIsRegistered = true;
-			registerReceiver(onOffReceiver, new IntentFilter(
+		mSettings = PreferenceManager.getDefaultSharedPreferences(this);
+		mSettings.registerOnSharedPreferenceChangeListener(mPreferenceListener);
+		if (mSettings.getBoolean("settings_away_chk", false)) {
+			mOnOffReceiverIsRegistered = true;
+			registerReceiver(mOnOffReceiver, new IntentFilter(
 					Intent.ACTION_SCREEN_OFF));
-			registerReceiver(onOffReceiver, new IntentFilter(
+			registerReceiver(mOnOffReceiver, new IntentFilter(
 					Intent.ACTION_SCREEN_ON));
 		}
-		final String tmpJid = settings.getString(
+		final String tmpJid = mSettings.getString(
 				MainApplication.ACCOUNT_USERNAME_KEY, "");
-		login = tmpJid;
-		password = settings.getString(MainApplication.ACCOUNT_PASSWORD_KEY, "");
+		mLogin = tmpJid;
+		mPassword = mSettings.getString(MainApplication.ACCOUNT_PASSWORD_KEY,
+				"");
+		mPort = DEFAULT_XMPP_PORT;
+		mService = "chat.facebook.com";
+		mHost = mService;
+
+		mHost = "chat.facebook.com";
+		mPort = 5222;
 
 		initConnectionConfig();
 		configure(ProviderManager.getInstance());
 
-		notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		connection = new XmppConnectionAdapter(connectionConfig, login,
-				password, this);
+		mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		mConnection = new XmppConnectionAdapter(mConnectionConfiguration,
+				mLogin, mPassword, this);
 
 		Roster.setDefaultSubscriptionMode(SubscriptionMode.manual);
-		bind = new XmppFacade(connection);
+		mBind = new XmppFacade(mConnection);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Service#onDestroy()
 	 */
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		resetStatus();
-		notificationManager.cancelAll();
-		unregisterReceiver(receiver);
-		settings.unregisterOnSharedPreferenceChangeListener(prefListener);
-		if (onOffReceiverIsRegistered) {
-			unregisterReceiver(onOffReceiver);
+		mNotificationManager.cancelAll();
+		unregisterReceiver(mReceiver);
+		mSettings
+				.unregisterOnSharedPreferenceChangeListener(mPreferenceListener);
+		if (mOnOffReceiverIsRegistered) {
+			unregisterReceiver(mOnOffReceiver);
 		}
-		if (connection.isAuthentificated() && AppConnectivity.isConnected(this)) {
-			connection.disconnect();
+		if (mConnection.isAuthentificated()
+				&& AppConnectivity.isConnected(this)) {
+			mConnection.disconnect();
 		}
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Service#onStart(android.content.Intent, int)
 	 */
 	@Override
-	public void onStart(final Intent intent, final int startId) {
+	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
 		try {
-			connection.connectAsync();
+			mConnection.connectAsync();
 		} catch (final RemoteException e) {
 			e.printStackTrace();
 		}
-	}
-
-	/* (non-Javadoc)
-	 * @see android.app.Service#onUnbind(android.content.Intent)
-	 */
-	@Override
-	public boolean onUnbind(final Intent intent) {
-		if (!connection.getAdaptee().isConnected()) {
-			this.stopSelf();
-		}
-		return true;
-	}
-
-	/**
-	 * Reset status.
-	 */
-	public void resetStatus() {
-		final Editor edit = settings.edit();
-		edit.putInt(MainApplication.STATUS_KEY, 1);
-		edit.commit();
 	}
 
 	/**
@@ -363,14 +249,166 @@ public class AppService extends Service {
 	 * @param notif
 	 *            the notif
 	 */
-	public void sendNotification(final int id, final Notification notif) {
-		if (settings.getBoolean(MainApplication.NOTIFICATION_VIBRATE_KEY, true)) {
+	public void sendNotification(int id, Notification notif) {
+		if (mSettings
+				.getBoolean(MainApplication.NOTIFICATION_VIBRATE_KEY, true)) {
 			notif.defaults |= Notification.DEFAULT_VIBRATE;
 		}
 		notif.defaults |= Notification.DEFAULT_LIGHTS;
-		final String ringtoneStr = settings.getString(
+		final String ringtoneStr = mSettings.getString(
 				MainApplication.NOTIFICATION_SOUND_KEY, "");
 		notif.sound = Uri.parse(ringtoneStr);
-		notificationManager.notify(id, notif);
+		mNotificationManager.notify(id, notif);
+	}
+
+	/**
+	 * Delete notification.
+	 * 
+	 * @param id
+	 *            the id
+	 */
+	public void deleteNotification(int id) {
+		mNotificationManager.cancel(id);
+	}
+
+	/**
+	 * Reset status.
+	 */
+	public void resetStatus() {
+		final Editor edit = mSettings.edit();
+		edit.putInt(MainApplication.STATUS_KEY, 1);
+		edit.commit();
+	}
+
+	/**
+	 * Inits the jingle.
+	 * 
+	 * @param adaptee
+	 *            the adaptee
+	 */
+	public void initJingle(XMPPConnection adaptee) {
+	}
+
+	/**
+	 * Gets the bind.
+	 * 
+	 * @return the bind
+	 */
+	public IXmppFacade getBind() {
+		return mBind;
+	}
+
+	/**
+	 * Gets the service preference.
+	 * 
+	 * @return the service preference
+	 */
+	public SharedPreferences getServicePreference() {
+		return mSettings;
+	}
+
+	/**
+	 * Gets the notification manager.
+	 * 
+	 * @return the notification manager
+	 */
+	public NotificationManager getNotificationManager() {
+		return mNotificationManager;
+	}
+
+	/**
+	 * Configure.
+	 * 
+	 * @param pm
+	 *            the pm
+	 */
+	private void configure(ProviderManager pm) {
+		// Privacy
+		pm.addIQProvider("query", "jabber:iq:privacy", new PrivacyProvider());
+	}
+
+	/**
+	 * The listener interface for receiving appServicePreference events. The
+	 * class that is interested in processing a appServicePreference event
+	 * implements this interface, and the object created with that class is
+	 * registered with a component using the component's
+	 * <code>addAppServicePreferenceListener<code> method. When
+	 * the appServicePreference event occurs, that object's appropriate
+	 * method is invoked.
+	 * 
+	 * @see AppServicePreferenceEvent
+	 */
+	private class AppServicePreferenceListener implements
+			SharedPreferences.OnSharedPreferenceChangeListener {
+
+		/**
+		 * Instantiates a new app service preference listener.
+		 */
+		public AppServicePreferenceListener() {
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.SharedPreferences.OnSharedPreferenceChangeListener
+		 * #onSharedPreferenceChanged(android.content.SharedPreferences,
+		 * java.lang.String)
+		 */
+		public void onSharedPreferenceChanged(
+				SharedPreferences sharedPreferences, String key) {
+			if ("settings_away_chk".equals(key)) {
+				if (sharedPreferences.getBoolean("settings_away_chk", false)) {
+					mOnOffReceiverIsRegistered = true;
+					registerReceiver(mOnOffReceiver, new IntentFilter(
+							Intent.ACTION_SCREEN_OFF));
+					registerReceiver(mOnOffReceiver, new IntentFilter(
+							Intent.ACTION_SCREEN_ON));
+				} else {
+					mOnOffReceiverIsRegistered = false;
+					unregisterReceiver(mOnOffReceiver);
+				}
+			}
+		}
+	}
+
+	/**
+	 * The Class AppServiceBroadcastReceiver.
+	 */
+	private class AppServiceBroadcastReceiver extends BroadcastReceiver {
+
+		/** The m old status. */
+		private String	mOldStatus;
+
+		/** The m old mode. */
+		private int		mOldMode;
+
+		/**
+		 * Instantiates a new app service broadcast receiver.
+		 */
+		public AppServiceBroadcastReceiver() {
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.BroadcastReceiver#onReceive(android.content.Context,
+		 * android.content.Intent)
+		 */
+		@Override
+		public void onReceive(final Context context, final Intent intent) {
+			final String intentAction = intent.getAction();
+			if (intentAction.equals(Intent.ACTION_SCREEN_OFF)) {
+				mOldMode = mConnection.getPreviousMode();
+				mOldStatus = mConnection.getPreviousStatus();
+				if (mConnection.isAuthentificated()) {
+					mConnection.changeStatus(Status.AWAY, mSettings.getString(
+							"settings_away_message", "Away"));
+				}
+			} else if (intentAction.equals(Intent.ACTION_SCREEN_ON)) {
+				if (mConnection.isAuthentificated()) {
+					mConnection.changeStatus(mOldMode, mOldStatus);
+				}
+			}
+		}
 	}
 }

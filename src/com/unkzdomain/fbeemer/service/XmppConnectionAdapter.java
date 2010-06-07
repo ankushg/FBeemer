@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import org.jivesoftware.smack.ConnectionConfiguration;
@@ -76,7 +76,8 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		public ConnexionListenerAdapter() {
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see org.jivesoftware.smack.ConnectionListener#connectionClosed()
 		 */
 
@@ -92,8 +93,11 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 			mApplication.setConnected(false);
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.ConnectionListener#connectionClosedOnError(java.lang.Exception)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.ConnectionListener#connectionClosedOnError
+		 * (java.lang.Exception)
 		 */
 
 		public void connectionClosedOnError(final Exception exception) {
@@ -107,7 +111,8 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 			mApplication.setConnected(false);
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see org.jivesoftware.smack.ConnectionListener#reconnectingIn(int)
 		 */
 
@@ -129,8 +134,11 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 			mRemoteConnListeners.finishBroadcast();
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.ConnectionListener#reconnectionFailed(java.lang.Exception)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.ConnectionListener#reconnectionFailed(java
+		 * .lang.Exception)
 		 */
 
 		public void reconnectionFailed(final Exception arg0) {
@@ -151,8 +159,10 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 			mRemoteConnListeners.finishBroadcast();
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.ConnectionListener#reconnectionSuccessful()
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.ConnectionListener#reconnectionSuccessful()
 		 */
 
 		public void reconnectionSuccessful() {
@@ -229,8 +239,11 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		public SubscribePacketListener() {
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.PacketListener#processPacket(org.jivesoftware.smack.packet.Packet)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.PacketListener#processPacket(org.jivesoftware
+		 * .smack.packet.Packet)
 		 */
 		public void processPacket(final Packet packet) {
 			// if (!(packet instanceof Presence))
@@ -259,43 +272,43 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 	/** The Constant SMACK_PRIORITY_MIN. */
 
 	private static final int									SMACK_PRIORITY_MIN			= -128;
-	
+
 	/** The Constant SMACK_PRIORITY_MAX. */
 	private static final int									SMACK_PRIORITY_MAX			= 128;
-	
+
 	/** The m adaptee. */
 	private final XMPPConnection								mAdaptee;
-	
+
 	/** The m chat manager. */
 	private IChatManager										mChatManager;
-	
+
 	/** The m login. */
 	private final String										mLogin;
-	
+
 	/** The m password. */
 	private final String										mPassword;
-	
+
 	/** The m resource. */
 	private String												mResource;
-	
+
 	/** The m error msg. */
 	private String												mErrorMsg;
-	
+
 	/** The m roster. */
 	private RosterAdapter										mRoster;
-	
+
 	/** The m previous priority. */
 	private int													mPreviousPriority;
-	
+
 	/** The m previous mode. */
 	private int													mPreviousMode;
-	
+
 	/** The m previous status. */
 	private String												mPreviousStatus;
-	
+
 	/** The m service. */
 	private final AppService									mService;
-	
+
 	/** The m application. */
 	private MainApplication										mApplication;
 
@@ -358,8 +371,11 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#addConnectionListener(com.unkzdomain.fbeemer.service.aidl.IBeemConnectionListener)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IXmppConnection#addConnectionListener
+	 * (com.unkzdomain.fbeemer.service.aidl.IBeemConnectionListener)
 	 */
 
 	public void addConnectionListener(final IBeemConnectionListener listen)
@@ -369,16 +385,22 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#changeStatus(int, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IXmppConnection#changeStatus(int,
+	 * java.lang.String)
 	 */
 
 	public void changeStatus(final int status, final String msg) {
 		changeStatusAndPriority(status, msg, mPreviousPriority);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#changeStatusAndPriority(int, java.lang.String, int)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IXmppConnection#changeStatusAndPriority
+	 * (int, java.lang.String, int)
 	 */
 
 	public void changeStatusAndPriority(final int status, final String msg,
@@ -412,7 +434,8 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		updateNotification(m);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#connect()
 	 */
 	public boolean connect() throws RemoteException {
@@ -444,7 +467,8 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#connectAsync()
 	 */
 
@@ -465,7 +489,8 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		t.start();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#connectSync()
 	 */
 
@@ -476,7 +501,8 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#disconnect()
 	 */
 
@@ -496,7 +522,8 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		return mAdaptee;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#getChatManager()
 	 */
 
@@ -504,8 +531,10 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		return mChatManager;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#getErrorMessage()
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IXmppConnection#getErrorMessage()
 	 */
 
 	public String getErrorMessage() {
@@ -530,7 +559,8 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		return mPreviousStatus;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#getRoster()
 	 */
 
@@ -559,14 +589,17 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		sdm.addFeature("jabber:iq:privacy");
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#isAuthentificated()
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IXmppConnection#isAuthentificated()
 	 */
 	public boolean isAuthentificated() {
 		return mAdaptee.isAuthenticated();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#login()
 	 */
 	public boolean login() throws RemoteException {
@@ -613,8 +646,11 @@ public class XmppConnectionAdapter extends IXmppConnection.Stub {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppConnection#removeConnectionListener(com.unkzdomain.fbeemer.service.aidl.IBeemConnectionListener)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IXmppConnection#removeConnectionListener
+	 * (com.unkzdomain.fbeemer.service.aidl.IBeemConnectionListener)
 	 */
 
 	public void removeConnectionListener(final IBeemConnectionListener listen)

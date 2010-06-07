@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import android.os.AsyncTask;
@@ -42,19 +42,19 @@ public class LoginAsyncTask extends AsyncTask<IXmppFacade, Integer, Boolean> {
 
 	/** The Constant STATE_CONNECTION_RUNNING. */
 	private static final int	STATE_CONNECTION_RUNNING	= 0;
-	
+
 	/** The Constant STATE_LOGIN_RUNNING. */
 	private static final int	STATE_LOGIN_RUNNING			= 1;
-	
+
 	/** The Constant STATE_LOGIN_SUCCESS. */
 	private static final int	STATE_LOGIN_SUCCESS			= 2;
-	
+
 	/** The Constant STATE_LOGIN_FAILED. */
 	private static final int	STATE_LOGIN_FAILED			= 3;
 
 	/** The m connection. */
 	private IXmppConnection		mConnection;
-	
+
 	/** The m error message. */
 	private String				mErrorMessage;
 
@@ -73,7 +73,8 @@ public class LoginAsyncTask extends AsyncTask<IXmppFacade, Integer, Boolean> {
 		return mErrorMessage;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.os.AsyncTask#onCancelled()
 	 */
 	@Override
@@ -87,7 +88,8 @@ public class LoginAsyncTask extends AsyncTask<IXmppFacade, Integer, Boolean> {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.os.AsyncTask#doInBackground(Params[])
 	 */
 	@Override

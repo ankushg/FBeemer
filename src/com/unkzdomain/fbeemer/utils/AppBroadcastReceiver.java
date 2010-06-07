@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.utils;
 
 import android.app.Activity;
@@ -47,8 +47,10 @@ public class AppBroadcastReceiver extends BroadcastReceiver {
 	/** The Constant CONNECTION_CLOSED. */
 	public static final String	CONNECTION_CLOSED	= "FBeemerConnectionClosed";
 
-	/* (non-Javadoc)
-	 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
+	/*
+	 * (non-Javadoc)
+	 * @see android.content.BroadcastReceiver#onReceive(android.content.Context,
+	 * android.content.Intent)
 	 */
 	@Override
 	public void onReceive(final Context context, final Intent intent) {

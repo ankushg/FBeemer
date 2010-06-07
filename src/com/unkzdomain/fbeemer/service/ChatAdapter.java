@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import java.util.Collections;
@@ -47,8 +47,8 @@ import com.unkzdomain.fbeemer.service.aidl.IMessageListener;
 /**
  * The Class ChatAdapter.
  */
-public class ChatAdapter extends IChat.Stub {
-	
+public class ChatAdapter extends IChat.Stub { // NO_UCD
+
 	/**
 	 * The listener interface for receiving msg events. The class that is
 	 * interested in processing a msg event implements this interface, and the
@@ -60,15 +60,18 @@ public class ChatAdapter extends IChat.Stub {
 	 * @see MsgEvent
 	 */
 	private class MsgListener implements ChatStateListener {
-		
+
 		/**
 		 * Instantiates a new msg listener.
 		 */
 		public MsgListener() {
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.MessageListener#processMessage(org.jivesoftware.smack.Chat, org.jivesoftware.smack.packet.Message)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.MessageListener#processMessage(org.jivesoftware
+		 * .smack.Chat, org.jivesoftware.smack.packet.Message)
 		 */
 		public void processMessage(final Chat chat,
 				final org.jivesoftware.smack.packet.Message message) {
@@ -89,8 +92,11 @@ public class ChatAdapter extends IChat.Stub {
 			mRemoteListeners.finishBroadcast();
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smackx.ChatStateListener#stateChanged(org.jivesoftware.smack.Chat, org.jivesoftware.smackx.ChatState)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smackx.ChatStateListener#stateChanged(org.jivesoftware
+		 * .smack.Chat, org.jivesoftware.smackx.ChatState)
 		 */
 		public void stateChanged(final Chat chat, final ChatState state) {
 			mState = state.name();
@@ -114,19 +120,19 @@ public class ChatAdapter extends IChat.Stub {
 
 	/** The m adaptee. */
 	private final Chat									mAdaptee;
-	
+
 	/** The m participant. */
 	private final Contact								mParticipant;
-	
+
 	/** The m state. */
 	private String										mState;
-	
+
 	/** The m is open. */
 	private boolean										mIsOpen;
-	
+
 	/** The m messages. */
 	private final List<Message>							mMessages;
-	
+
 	/** The m remote listeners. */
 	private final RemoteCallbackList<IMessageListener>	mRemoteListeners	= new RemoteCallbackList<IMessageListener>();
 
@@ -159,8 +165,11 @@ public class ChatAdapter extends IChat.Stub {
 		mMessages.add(msg);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#addMessageListener(com.unkzdomain.fbeemer.service.aidl.IMessageListener)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IChat#addMessageListener(com.unkzdomain
+	 * .fbeemer.service.aidl.IMessageListener)
 	 */
 	public void addMessageListener(final IMessageListener listen) {
 		if (listen != null) {
@@ -177,36 +186,42 @@ public class ChatAdapter extends IChat.Stub {
 		return mAdaptee;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#getMessages()
 	 */
 	public List<Message> getMessages() throws RemoteException {
 		return Collections.unmodifiableList(mMessages);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#getParticipant()
 	 */
 	public Contact getParticipant() throws RemoteException {
 		return mParticipant;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#getState()
 	 */
 	public String getState() throws RemoteException {
 		return mState;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#isOpen()
 	 */
 	public boolean isOpen() {
 		return mIsOpen;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#removeMessageListener(com.unkzdomain.fbeemer.service.aidl.IMessageListener)
+	/*
+	 * (non-Javadoc)
+	 * @seecom.unkzdomain.fbeemer.service.aidl.IChat#removeMessageListener(com.
+	 * unkzdomain.fbeemer.service.aidl.IMessageListener)
 	 */
 	public void removeMessageListener(final IMessageListener listen) {
 		if (listen != null) {
@@ -214,8 +229,11 @@ public class ChatAdapter extends IChat.Stub {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#sendMessage(com.unkzdomain.fbeemer.service.Message)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IChat#sendMessage(com.unkzdomain.
+	 * fbeemer.service.Message)
 	 */
 	public void sendMessage(final com.unkzdomain.fbeemer.service.Message message)
 			throws RemoteException {
@@ -233,14 +251,16 @@ public class ChatAdapter extends IChat.Stub {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#setOpen(boolean)
 	 */
 	public void setOpen(final boolean isOpen) {
 		mIsOpen = isOpen;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IChat#setState(java.lang.String)
 	 */
 	public void setState(final String state) throws RemoteException {

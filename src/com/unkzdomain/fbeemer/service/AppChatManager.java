@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import java.util.ArrayList;
@@ -56,7 +56,7 @@ import com.unkzdomain.fbeemer.service.aidl.IRoster;
 /**
  * The Class AppChatManager.
  */
-public class AppChatManager extends IChatManager.Stub {
+public class AppChatManager extends IChatManager.Stub { // NO_UCD
 
 	/**
 	 * The listener interface for receiving chat events. The class that is
@@ -77,8 +77,11 @@ public class AppChatManager extends IChatManager.Stub {
 		public ChatListener() {
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.ChatManagerListener#chatCreated(org.jivesoftware.smack.Chat, boolean)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.ChatManagerListener#chatCreated(org.jivesoftware
+		 * .smack.Chat, boolean)
 		 */
 		public void chatCreated(final Chat chat, final boolean locally) {
 			final IChat newchat = getChat(chat);
@@ -145,8 +148,12 @@ public class AppChatManager extends IChatManager.Stub {
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IMessageListener#processMessage(com.unkzdomain.fbeemer.service.aidl.IChat, com.unkzdomain.fbeemer.service.Message)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IMessageListener#processMessage
+		 * (com.unkzdomain.fbeemer.service.aidl.IChat,
+		 * com.unkzdomain.fbeemer.service.Message)
 		 */
 		public void processMessage(final IChat chat, final Message message) {
 			try {
@@ -162,8 +169,11 @@ public class AppChatManager extends IChatManager.Stub {
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IMessageListener#stateChanged(com.unkzdomain.fbeemer.service.aidl.IChat)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IMessageListener#stateChanged
+		 * (com.unkzdomain.fbeemer.service.aidl.IChat)
 		 */
 		public void stateChanged(final IChat chat) {
 		}
@@ -171,13 +181,13 @@ public class AppChatManager extends IChatManager.Stub {
 
 	/** The m adaptee. */
 	private final ChatManager								mAdaptee;
-	
+
 	/** The m chats. */
 	private final Map<String, ChatAdapter>					mChats							= new HashMap<String, ChatAdapter>();
-	
+
 	/** The m chat listener. */
 	private final ChatListener								mChatListener					= new ChatListener();
-	
+
 	/** The m remote chat creation listeners. */
 	private final RemoteCallbackList<IChatManagerListener>	mRemoteChatCreationListeners	= new RemoteCallbackList<IChatManagerListener>();
 
@@ -199,8 +209,11 @@ public class AppChatManager extends IChatManager.Stub {
 		mAdaptee.addChatListener(mChatListener);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChatManager#addChatCreationListener(com.unkzdomain.fbeemer.service.aidl.IChatManagerListener)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IChatManager#addChatCreationListener
+	 * (com.unkzdomain.fbeemer.service.aidl.IChatManagerListener)
 	 */
 	public void addChatCreationListener(final IChatManagerListener listener)
 			throws RemoteException {
@@ -209,8 +222,12 @@ public class AppChatManager extends IChatManager.Stub {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChatManager#createChat(com.unkzdomain.fbeemer.service.Contact, com.unkzdomain.fbeemer.service.aidl.IMessageListener)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IChatManager#createChat(com.unkzdomain
+	 * .fbeemer.service.Contact,
+	 * com.unkzdomain.fbeemer.service.aidl.IMessageListener)
 	 */
 	public IChat createChat(final Contact contact,
 			final IMessageListener listener) {
@@ -242,8 +259,11 @@ public class AppChatManager extends IChatManager.Stub {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChatManager#deleteChatNotification(com.unkzdomain.fbeemer.service.aidl.IChat)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IChatManager#deleteChatNotification
+	 * (com.unkzdomain.fbeemer.service.aidl.IChat)
 	 */
 	public void deleteChatNotification(final IChat chat) {
 		try {
@@ -254,8 +274,11 @@ public class AppChatManager extends IChatManager.Stub {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChatManager#destroyChat(com.unkzdomain.fbeemer.service.aidl.IChat)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IChatManager#destroyChat(com.unkzdomain
+	 * .fbeemer.service.aidl.IChat)
 	 */
 	public void destroyChat(final IChat chat) throws RemoteException {
 		if (chat == null) {
@@ -282,15 +305,19 @@ public class AppChatManager extends IChatManager.Stub {
 		return res;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChatManager#getChat(com.unkzdomain.fbeemer.service.Contact)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IChatManager#getChat(com.unkzdomain
+	 * .fbeemer.service.Contact)
 	 */
 	public ChatAdapter getChat(final Contact contact) {
 		final String key = contact.getJIDWithRes();
 		return mChats.get(key);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IChatManager#getOpenedChatList()
 	 */
 	public List<Contact> getOpenedChatList() throws RemoteException {
@@ -309,8 +336,11 @@ public class AppChatManager extends IChatManager.Stub {
 		return openedChats;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IChatManager#removeChatCreationListener(com.unkzdomain.fbeemer.service.aidl.IChatManagerListener)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IChatManager#removeChatCreationListener
+	 * (com.unkzdomain.fbeemer.service.aidl.IChatManagerListener)
 	 */
 	public void removeChatCreationListener(final IChatManagerListener listener)
 			throws RemoteException {

@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import org.jivesoftware.smack.XMPPException;
@@ -68,15 +68,18 @@ public class XmppFacade extends IXmppFacade.Stub {
 	public void call(final String jid) throws RemoteException {
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#changeStatus(int, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#changeStatus(int,
+	 * java.lang.String)
 	 */
 
 	public void changeStatus(final int status, final String msg) {
 		mConnexion.changeStatus(status, msg);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#connectAsync()
 	 */
 
@@ -84,7 +87,8 @@ public class XmppFacade extends IXmppFacade.Stub {
 		mConnexion.connectAsync();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#connectSync()
 	 */
 
@@ -92,7 +96,8 @@ public class XmppFacade extends IXmppFacade.Stub {
 		mConnexion.connectSync();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#createConnection()
 	 */
 
@@ -100,7 +105,8 @@ public class XmppFacade extends IXmppFacade.Stub {
 		return mConnexion;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#disconnect()
 	 */
 
@@ -108,7 +114,8 @@ public class XmppFacade extends IXmppFacade.Stub {
 		mConnexion.disconnect();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#getChatManager()
 	 */
 
@@ -116,7 +123,8 @@ public class XmppFacade extends IXmppFacade.Stub {
 		return mConnexion.getChatManager();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#getRoster()
 	 */
 
@@ -142,8 +150,11 @@ public class XmppFacade extends IXmppFacade.Stub {
 		return new byte[0];
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IXmppFacade#sendPresencePacket(com.unkzdomain.fbeemer.service.PresenceAdapter)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IXmppFacade#sendPresencePacket(com
+	 * .unkzdomain.fbeemer.service.PresenceAdapter)
 	 */
 	public void sendPresencePacket(final PresenceAdapter presence)
 			throws RemoteException {

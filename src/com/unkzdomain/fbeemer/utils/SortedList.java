@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.utils;
 
 import java.util.Collection;
@@ -65,7 +65,8 @@ public class SortedList<E> implements List<E> {
 			this.mIt = iterator;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#add(java.lang.Object)
 		 */
 		public void add(final E addObject) {
@@ -73,56 +74,64 @@ public class SortedList<E> implements List<E> {
 					"add() not supported in SortedList iterator");
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#hasNext()
 		 */
 		public boolean hasNext() {
 			return this.mIt.hasNext();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#hasPrevious()
 		 */
 		public boolean hasPrevious() {
 			return this.mIt.hasPrevious();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#next()
 		 */
 		public E next() {
 			return this.mIt.next();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#nextIndex()
 		 */
 		public int nextIndex() {
 			return this.mIt.nextIndex();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#previous()
 		 */
 		public E previous() {
 			return this.mIt.previous();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#previousIndex()
 		 */
 		public int previousIndex() {
 			return this.mIt.previousIndex();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#remove()
 		 */
 		public void remove() {
 			this.mIt.remove();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.ListIterator#set(java.lang.Object)
 		 */
 		public void set(final E setObject) {
@@ -152,7 +161,8 @@ public class SortedList<E> implements List<E> {
 		Collections.sort(this.backend, mComparator);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#add(java.lang.Object)
 	 */
 	public boolean add(final E addObject) {
@@ -170,7 +180,8 @@ public class SortedList<E> implements List<E> {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#add(int, java.lang.Object)
 	 */
 	public void add(final int index, final E element) {
@@ -178,7 +189,8 @@ public class SortedList<E> implements List<E> {
 				"add at specific index is not supported in SortedList");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#addAll(java.util.Collection)
 	 */
 	public boolean addAll(final Collection<? extends E> collection) {
@@ -192,7 +204,8 @@ public class SortedList<E> implements List<E> {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#addAll(int, java.util.Collection)
 	 */
 	public boolean addAll(final int index,
@@ -200,28 +213,32 @@ public class SortedList<E> implements List<E> {
 		return addAll(collection);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#clear()
 	 */
 	public void clear() {
 		this.backend.clear();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#contains(java.lang.Object)
 	 */
 	public boolean contains(final Object obj) {
 		return this.backend.contains(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#containsAll(java.util.Collection)
 	 */
 	public boolean containsAll(final Collection<?> collection) {
 		return this.backend.containsAll(collection);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -229,14 +246,16 @@ public class SortedList<E> implements List<E> {
 		return this.backend.equals(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#get(int)
 	 */
 	public E get(final int index) {
 		return this.backend.get(index);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -244,77 +263,88 @@ public class SortedList<E> implements List<E> {
 		return this.backend.hashCode();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#indexOf(java.lang.Object)
 	 */
 	public int indexOf(final Object obj) {
 		return this.backend.indexOf(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#isEmpty()
 	 */
 	public boolean isEmpty() {
 		return this.backend.isEmpty();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#iterator()
 	 */
 	public Iterator<E> iterator() {
 		return new SortedListIterator<E>(this.backend.listIterator());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#lastIndexOf(java.lang.Object)
 	 */
 	public int lastIndexOf(final Object obj) {
 		return this.backend.lastIndexOf(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#listIterator()
 	 */
 	public ListIterator<E> listIterator() {
 		return new SortedListIterator<E>(this.backend.listIterator());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#listIterator(int)
 	 */
 	public ListIterator<E> listIterator(final int index) {
 		return new SortedListIterator<E>(this.backend.listIterator(index));
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#remove(int)
 	 */
 	public E remove(final int index) {
 		return this.backend.remove(index);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#remove(java.lang.Object)
 	 */
 	public boolean remove(final Object obj) {
 		return this.backend.remove(obj);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#removeAll(java.util.Collection)
 	 */
 	public boolean removeAll(final Collection<?> collection) {
 		return this.backend.removeAll(collection);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#retainAll(java.util.Collection)
 	 */
 	public boolean retainAll(final Collection<?> collection) {
 		return this.backend.retainAll(collection);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#set(int, java.lang.Object)
 	 */
 	public E set(final int index, final E element) {
@@ -322,35 +352,40 @@ public class SortedList<E> implements List<E> {
 				"set() is not supported in SortedList");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#size()
 	 */
 	public int size() {
 		return this.backend.size();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#subList(int, int)
 	 */
 	public List<E> subList(final int fromIndex, final int toIndex) {
 		return this.backend.subList(fromIndex, toIndex);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#toArray()
 	 */
 	public Object[] toArray() {
 		return this.backend.toArray();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.util.List#toArray(T[])
 	 */
 	public <T> T[] toArray(final T[] array) {
 		return this.backend.toArray(array);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

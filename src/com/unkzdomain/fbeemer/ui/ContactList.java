@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.ui;
 
 import java.util.ArrayList;
@@ -88,14 +88,15 @@ public class ContactList extends AbstractManagedActivity {
 	 */
 	private static class ComparatorContactListByStatusAndName<T> implements
 			Comparator<T> {
-		
+
 		/**
 		 * Instantiates a new comparator contact list by status and name.
 		 */
 		public ComparatorContactListByStatusAndName() {
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
 		public int compare(final T c1, final T c2) {
@@ -140,10 +141,12 @@ public class ContactList extends AbstractManagedActivity {
 				v.setCompoundDrawablesWithIntrinsicBounds(mStatusDrawable,
 						null, null, null);
 				v.setText(curContact.getName());
+				view.refreshDrawableState();
 			}
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.widget.Adapter#getCount()
 		 */
 
@@ -151,7 +154,8 @@ public class ContactList extends AbstractManagedActivity {
 			return mListContact.size();
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.widget.Adapter#getItem(int)
 		 */
 
@@ -159,7 +163,8 @@ public class ContactList extends AbstractManagedActivity {
 			return mListContact.get(position);
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
 		 * @see android.widget.Adapter#getItemId(int)
 		 */
 
@@ -167,8 +172,10 @@ public class ContactList extends AbstractManagedActivity {
 			return position;
 		}
 
-		/* (non-Javadoc)
-		 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
+		/*
+		 * (non-Javadoc)
+		 * @see android.widget.Adapter#getView(int, android.view.View,
+		 * android.view.ViewGroup)
 		 */
 
 		public View getView(final int position, final View convertView,
@@ -194,15 +201,18 @@ public class ContactList extends AbstractManagedActivity {
 	 * The Class FBeemerContactListOnClick.
 	 */
 	private class FBeemerContactListOnClick implements OnItemClickListener {
-		
+
 		/**
 		 * Instantiates a new f beemer contact list on click.
 		 */
 		public FBeemerContactListOnClick() {
 		}
 
-		/* (non-Javadoc)
-		 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.widget.AdapterView.OnItemClickListener#onItemClick(android
+		 * .widget.AdapterView, android.view.View, int, long)
 		 */
 
 		public void onItemClick(final AdapterView<?> arg0, final View v,
@@ -226,7 +236,7 @@ public class ContactList extends AbstractManagedActivity {
 	 * @see FBeemerRosterEvent
 	 */
 	private class FBeemerRosterListener extends IBeemRosterListener.Stub {
-		
+
 		/**
 		 * Instantiates a new f beemer roster listener.
 		 */
@@ -251,6 +261,7 @@ public class ContactList extends AbstractManagedActivity {
 			if (list != mListContact && groups.isEmpty()) {
 				list.add(contact);
 			}
+			mAdapterContactList.notifyDataSetChanged();
 		}
 
 		/**
@@ -266,8 +277,11 @@ public class ContactList extends AbstractManagedActivity {
 			realGroups.retainAll(rosterGroups);
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesAdded(java.util.List)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesAdded
+		 * (java.util.List)
 		 */
 
 		public void onEntriesAdded(final List<String> addresses)
@@ -298,12 +312,16 @@ public class ContactList extends AbstractManagedActivity {
 
 					// add the contact to all and no groups
 					addToSpecialList(contact);
+					mAdapterContactList.notifyDataSetChanged();
 				}
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesDeleted(java.util.List)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesDeleted
+		 * (java.util.List)
 		 */
 
 		public void onEntriesDeleted(final List<String> addresses)
@@ -320,6 +338,7 @@ public class ContactList extends AbstractManagedActivity {
 					contactByGroups.remove(contact);
 				}
 				cleanBannerGroup();
+				mAdapterContactList.notifyDataSetChanged();
 			}
 
 			mHandler.post(new Runnable() {
@@ -332,8 +351,11 @@ public class ContactList extends AbstractManagedActivity {
 
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesUpdated(java.util.List)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onEntriesUpdated
+		 * (java.util.List)
 		 */
 
 		public void onEntriesUpdated(final List<String> addresses)
@@ -365,6 +387,7 @@ public class ContactList extends AbstractManagedActivity {
 						}
 					}
 
+
 				}
 
 				// add the contact to all and no groups
@@ -373,10 +396,14 @@ public class ContactList extends AbstractManagedActivity {
 				}
 			}
 			cleanBannerGroup();
+			mAdapterContactList.notifyDataSetChanged();
 		}
 
-		/* (non-Javadoc)
-		 * @see com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onPresenceChanged(com.unkzdomain.fbeemer.service.PresenceAdapter)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener#onPresenceChanged
+		 * (com.unkzdomain.fbeemer.service.PresenceAdapter)
 		 */
 
 		public void onPresenceChanged(final PresenceAdapter presence)
@@ -496,6 +523,7 @@ public class ContactList extends AbstractManagedActivity {
 					noGroups);
 			mContactOnGroup.put(getString(R.string.contact_list_all_contact),
 					all);
+			mAdapterContactList.notifyDataSetChanged();
 		}
 
 		/**
@@ -511,8 +539,11 @@ public class ContactList extends AbstractManagedActivity {
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see android.content.ServiceConnection#onServiceConnected(android.content.ComponentName, android.os.IBinder)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.ServiceConnection#onServiceConnected(android.content
+		 * .ComponentName, android.os.IBinder)
 		 */
 		public void onServiceConnected(final ComponentName name,
 				final IBinder service) {
@@ -531,23 +562,21 @@ public class ContactList extends AbstractManagedActivity {
 					assignContactToGroups(mRoster.getContactList(),
 							tmpGroupList);
 					makeSortedList(mContactOnGroup);
-					if (!mSettings
-							.getBoolean("settings_key_hide_groups", false)) {
-						showGroups();
-					} else {
-						hideGroups();
-					}
 					final String group = getString(R.string.contact_list_all_contact);
 					buildContactList(group);
 					mRoster.addRosterListener(mFBeemerRosterListener);
+					mAdapterContactList.notifyDataSetChanged();
 				}
 			} catch (final RemoteException e) {
 				e.printStackTrace();
 			}
 		}
 
-		/* (non-Javadoc)
-		 * @see android.content.ServiceConnection#onServiceDisconnected(android.content.ComponentName)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * android.content.ServiceConnection#onServiceDisconnected(android.content
+		 * .ComponentName)
 		 */
 		public void onServiceDisconnected(final ComponentName name) {
 			try {
@@ -570,40 +599,40 @@ public class ContactList extends AbstractManagedActivity {
 		SERVICE_INTENT.setComponent(new ComponentName("com.unkzdomain.fbeemer",
 				"com.unkzdomain.fbeemer.AppService"));
 	}
-	
+
 	/** The Constant SETTINGS_HIDDEN_CONTACT. */
 	private static final String									SETTINGS_HIDDEN_CONTACT	= "settings_key_hidden_contact";
-	
+
 	/** The m adapter contact list. */
 	private final FBeemerContactList							mAdapterContactList		= new FBeemerContactList();
-	
+
 	/** The m list group. */
 	private final List<String>									mListGroup				= new ArrayList<String>();
-	
+
 	/** The m contact on group. */
 	private final Map<String, List<Contact>>					mContactOnGroup			= new HashMap<String, List<Contact>>();
-	
+
 	/** The m on contact click. */
 	private final FBeemerContactListOnClick						mOnContactClick			= new FBeemerContactListOnClick();
-	
+
 	/** The m handler. */
 	private final Handler										mHandler				= new Handler();
-	
+
 	/** The m serv conn. */
 	private final ServiceConnection								mServConn				= new FBeemerServiceConnection();
-	
+
 	/** The m receiver. */
 	private final AppBroadcastReceiver							mReceiver				= new AppBroadcastReceiver();
-	
+
 	/** The m comparator. */
 	private final ComparatorContactListByStatusAndName<Contact>	mComparator				= new ComparatorContactListByStatusAndName<Contact>();
-	
+
 	/** The m f beemer roster listener. */
 	private final FBeemerRosterListener							mFBeemerRosterListener	= new FBeemerRosterListener();
-	
+
 	/** The m list contact. */
 	private List<Contact>										mListContact;
-	
+
 	/** The m roster. */
 	private IRoster												mRoster;
 
@@ -639,16 +668,8 @@ public class ContactList extends AbstractManagedActivity {
 		mAdapterContactList.notifyDataSetChanged();
 	}
 
-	/**
-	 * Hide groups.
-	 */
-	private void hideGroups() {
-		// View v = findViewById(R.id.contactlist_groupstub);
-		// if (v != null)
-		// v.setVisibility(View.GONE);
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onContextItemSelected(android.view.MenuItem)
 	 */
 	@Override
@@ -692,8 +713,11 @@ public class ContactList extends AbstractManagedActivity {
 		return super.onContextItemSelected(item);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle
+	 * )
 	 */
 	@Override
 	public void onCreate(final Bundle saveBundle) {
@@ -713,8 +737,10 @@ public class ContactList extends AbstractManagedActivity {
 		mAdapterContactList.notifyDataSetChanged();
 	}
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu, android.view.View, android.view.ContextMenu.ContextMenuInfo)
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu,
+	 * android.view.View, android.view.ContextMenu.ContextMenuInfo)
 	 */
 	@Override
 	public void onCreateContextMenu(final ContextMenu menu, final View v,
@@ -732,7 +758,8 @@ public class ContactList extends AbstractManagedActivity {
 		menu.setHeaderTitle(mSelectedContact.getJID());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 
@@ -745,7 +772,8 @@ public class ContactList extends AbstractManagedActivity {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#onDestroy()
 	 */
 	@Override
@@ -754,7 +782,8 @@ public class ContactList extends AbstractManagedActivity {
 		unregisterReceiver(mReceiver);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
 	@Override
@@ -772,7 +801,8 @@ public class ContactList extends AbstractManagedActivity {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#onPause()
 	 */
 
@@ -794,7 +824,8 @@ public class ContactList extends AbstractManagedActivity {
 		mXmppFacade = null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#onResume()
 	 */
 	@Override
@@ -804,25 +835,5 @@ public class ContactList extends AbstractManagedActivity {
 			mBinded = bindService(SERVICE_INTENT, mServConn, BIND_AUTO_CREATE);
 		}
 		mAdapterContactList.notifyDataSetChanged();
-	}
-
-	/**
-	 * Show groups.
-	 */
-	private void showGroups() {
-		//
-		// ViewStub stub = (ViewStub) findViewById(R.id.contactlist_stub);
-		// if (stub != null) {
-		// View v = stub.inflate();
-		// Gallery g = (Gallery) v.findViewById(R.id.contactlist_banner);
-		// g.setOnItemClickListener(new OnItemClickGroupName());
-		// g.setAdapter(mAdapterBanner);
-		// g.setSelection(0);
-		// } else {
-		// ((LinearLayout) findViewById(R.id.contactlist_groupstub))
-		// .setVisibility(View.VISIBLE);
-		// Gallery g = (Gallery) findViewById(R.id.contactlist_banner);
-		// g.setSelection(0);
-		// }
 	}
 }

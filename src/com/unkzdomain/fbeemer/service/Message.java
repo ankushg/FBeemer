@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import org.jivesoftware.smack.packet.XMPPError;
@@ -62,19 +62,19 @@ public class Message implements Parcelable {
 
 	/** The type. */
 	private int										type;
-	
+
 	/** The body. */
 	private String									body;
-	
+
 	/** The subject. */
 	private String									subject;
-	
+
 	/** The to. */
 	private String									to;
-	
+
 	/** The from. */
 	private String									from;
-	
+
 	/** The thread. */
 	private String									thread;
 
@@ -150,7 +150,8 @@ public class Message implements Parcelable {
 		from = null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.os.Parcelable#describeContents()
 	 */
 	public int describeContents() {
@@ -271,7 +272,8 @@ public class Message implements Parcelable {
 		this.type = type;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
 	 */
 	public void writeToParcel(final Parcel dest, final int flags) {

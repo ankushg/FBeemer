@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ import com.unkzdomain.fbeemer.utils.Status;
 /**
  * The Class RosterAdapter.
  */
-public class RosterAdapter extends
+public class RosterAdapter extends // NO_UCD
 		com.unkzdomain.fbeemer.service.aidl.IRoster.Stub {
 
 	/**
@@ -69,8 +69,11 @@ public class RosterAdapter extends
 		public RosterListenerAdapter() {
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.RosterListener#entriesAdded(java.util.Collection)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.RosterListener#entriesAdded(java.util.Collection
+		 * )
 		 */
 
 		public void entriesAdded(final Collection<String> addresses) {
@@ -90,8 +93,11 @@ public class RosterAdapter extends
 			mRemoteRosListeners.finishBroadcast();
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.RosterListener#entriesDeleted(java.util.Collection)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.RosterListener#entriesDeleted(java.util.Collection
+		 * )
 		 */
 
 		public void entriesDeleted(final Collection<String> addresses) {
@@ -111,8 +117,11 @@ public class RosterAdapter extends
 			mRemoteRosListeners.finishBroadcast();
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.RosterListener#entriesUpdated(java.util.Collection)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.RosterListener#entriesUpdated(java.util.Collection
+		 * )
 		 */
 
 		public void entriesUpdated(final Collection<String> addresses) {
@@ -132,8 +141,11 @@ public class RosterAdapter extends
 			mRemoteRosListeners.finishBroadcast();
 		}
 
-		/* (non-Javadoc)
-		 * @see org.jivesoftware.smack.RosterListener#presenceChanged(org.jivesoftware.smack.packet.Presence)
+		/*
+		 * (non-Javadoc)
+		 * @see
+		 * org.jivesoftware.smack.RosterListener#presenceChanged(org.jivesoftware
+		 * .smack.packet.Presence)
 		 */
 
 		public void presenceChanged(final Presence presence) {
@@ -159,10 +171,10 @@ public class RosterAdapter extends
 
 	/** The m adaptee. */
 	private final Roster									mAdaptee;
-	
+
 	/** The m remote ros listeners. */
 	private final RemoteCallbackList<IBeemRosterListener>	mRemoteRosListeners	= new RemoteCallbackList<IBeemRosterListener>();
-	
+
 	/** The m default status messages. */
 	private final Map<Integer, String>						mDefaultStatusMessages;
 
@@ -183,8 +195,11 @@ public class RosterAdapter extends
 		mDefaultStatusMessages = createDefaultStatusMessagesMap(context);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#addContact(java.lang.String, java.lang.String, java.lang.String[])
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IRoster#addContact(java.lang.String,
+	 * java.lang.String, java.lang.String[])
 	 */
 
 	public Contact addContact(final String user, final String name,
@@ -217,8 +232,11 @@ public class RosterAdapter extends
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#addRosterListener(com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IRoster#addRosterListener(com.unkzdomain
+	 * .fbeemer.service.aidl.IBeemRosterListener)
 	 */
 
 	public void addRosterListener(final IBeemRosterListener listen)
@@ -254,8 +272,10 @@ public class RosterAdapter extends
 		return defaultStatusMessages;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#createGroup(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IRoster#createGroup(java.lang.String)
 	 */
 
 	public void createGroup(final String groupname) throws RemoteException {
@@ -264,8 +284,11 @@ public class RosterAdapter extends
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#deleteContact(com.unkzdomain.fbeemer.service.Contact)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IRoster#deleteContact(com.unkzdomain
+	 * .fbeemer.service.Contact)
 	 */
 	public void deleteContact(final Contact contact) throws RemoteException {
 		try {
@@ -276,8 +299,10 @@ public class RosterAdapter extends
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#getContact(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IRoster#getContact(java.lang.String)
 	 */
 
 	public Contact getContact(final String jid) throws RemoteException {
@@ -320,7 +345,8 @@ public class RosterAdapter extends
 		return c;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#getContactList()
 	 */
 
@@ -333,7 +359,8 @@ public class RosterAdapter extends
 		return coList;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#getGroupsNames()
 	 */
 
@@ -372,8 +399,11 @@ public class RosterAdapter extends
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#removeRosterListener(com.unkzdomain.fbeemer.service.aidl.IBeemRosterListener)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IRoster#removeRosterListener(com.
+	 * unkzdomain.fbeemer.service.aidl.IBeemRosterListener)
 	 */
 
 	public void removeRosterListener(final IBeemRosterListener listen)
@@ -383,8 +413,11 @@ public class RosterAdapter extends
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.unkzdomain.fbeemer.service.aidl.IRoster#setContactName(java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.unkzdomain.fbeemer.service.aidl.IRoster#setContactName(java.lang.
+	 * String, java.lang.String)
 	 */
 
 	public void setContactName(final String jid, final String name)

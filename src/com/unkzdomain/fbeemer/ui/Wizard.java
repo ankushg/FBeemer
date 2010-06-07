@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.ui;
 
 import android.content.Intent;
@@ -41,12 +41,13 @@ import com.unkzdomain.fbeemer.utils.AbstractManagedActivity;
 /**
  * The Class Wizard.
  */
-public class Wizard extends AbstractManagedActivity implements OnClickListener {
+public class Wizard extends AbstractManagedActivity implements OnClickListener { // NO_UCD
 
 	/** The m next button. */
 	private Button	mNextButton;
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
 	public void onClick(final View v) {
@@ -55,8 +56,11 @@ public class Wizard extends AbstractManagedActivity implements OnClickListener {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.medialets.android.analytics.ManagedActivity#onCreate(android.os.Bundle
+	 * )
 	 */
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {

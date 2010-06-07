@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.utils;
 
 import com.medialets.android.analytics.ManagedActivity;
@@ -37,7 +37,8 @@ import com.unkzdomain.fbeemer.R;
  */
 public abstract class AbstractManagedActivity extends ManagedActivity {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#getAppVersion()
 	 */
 	@Override
@@ -53,7 +54,8 @@ public abstract class AbstractManagedActivity extends ManagedActivity {
 		return getString(R.string.medialets_app_version);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#getMMAppID()
 	 */
 	@Override
@@ -61,7 +63,8 @@ public abstract class AbstractManagedActivity extends ManagedActivity {
 		return getString(R.string.app_id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see com.medialets.android.analytics.ManagedActivity#useLocation()
 	 */
 	@Override

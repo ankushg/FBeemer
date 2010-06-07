@@ -25,7 +25,7 @@
 
     You should have received a copy of the GNU General Public License
     along with FBeemer.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package com.unkzdomain.fbeemer.service;
 
 import java.util.ArrayList;
@@ -65,25 +65,25 @@ public class Contact implements Parcelable {
 
 	/** The m id. */
 	private int										mID;
-	
+
 	/** The m status. */
 	private int										mStatus;
-	
+
 	/** The m jid. */
 	private final String							mJID;
-	
+
 	/** The m selected res. */
 	private String									mSelectedRes;
-	
+
 	/** The m msg state. */
 	private String									mMsgState;
-	
+
 	/** The m res. */
 	private List<String>							mRes;
-	
+
 	/** The m groups. */
 	private final List<String>						mGroups	= new ArrayList<String>();
-	
+
 	/** The m name. */
 	private String									mName;
 
@@ -157,14 +157,16 @@ public class Contact implements Parcelable {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.os.Parcelable#describeContents()
 	 */
 	public int describeContents() {
 		return 0;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -264,7 +266,8 @@ public class Contact implements Parcelable {
 		return mStatus;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -386,7 +389,8 @@ public class Contact implements Parcelable {
 		mMsgState = presence.getStatusText();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -437,7 +441,8 @@ public class Contact implements Parcelable {
 		return u;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see android.os.Parcelable#writeToParcel(android.os.Parcel, int)
 	 */
 	public void writeToParcel(final Parcel dest, final int flags) {
